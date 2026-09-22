@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cómo funciona APP FCBQ: una biblioteca central de Apps Script, un Template ligero y un flujo de trabajo desde Google Sheets.">
+  <meta name="theme-color" content="#0d6b5f">
+  <meta property="og:title" content="APP FCBQ · Arquitectura y funcionamiento">
+  <meta property="og:description" content="Biblioteca central, Template sin código duplicado y flujo de trabajo en Google Sheets.">
+  <meta property="og:type" content="website">
+  <title>APP FCBQ · Arquitectura y funcionamiento</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="APP FCBQ, inicio">
+      <span class="brand-mark" aria-hidden="true">F</span>
+      <span>APP FCBQ</span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <a href="#arquitectura">Arquitectura</a>
+      <a href="#flujo">Flujo</a>
+      <a href="#mantenimiento">Mantenimiento</a>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <p class="eyebrow">Google Sheets + Apps Script</p>
+        <h1>Una sola lógica.<br><span>Muchas hojas.</span></h1>
+        <p class="lead">APP FCBQ concentra el funcionamiento en una biblioteca central. Cada copia del Template mantiene su propia hoja y delega las acciones sin copiar el código.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#arquitectura">Ver la arquitectura</a>
+          <a class="button secondary" href="#flujo">Cómo se usa</a>
+        </div>
+      </div>
+      <div class="architecture-mini" aria-label="Resumen de arquitectura">
+        <div class="mini-card central">
+          <span>Biblioteca</span>
+          <strong>APP FCBQ</strong>
+          <small>Lógica central</small>
+        </div>
+        <div class="connector" aria-hidden="true"><span></span></div>
+        <div class="mini-card template">
+          <span>Interfaz</span>
+          <strong>Template APP</strong>
+          <small>Wrappers mínimos</small>
+        </div>
+        <div class="connector" aria-hidden="true"><span></span></div>
+        <div class="mini-card sheet">
+          <span>Uso diario</span>
+          <strong>Google Sheets</strong>
+          <small>Datos de cada usuario</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="arquitectura">
+      <div class="section-heading">
+        <p class="eyebrow">Arquitectura</p>
+        <h2>Tres capas con responsabilidades claras</h2>
+        <p>La separación evita duplicados, simplifica las actualizaciones y mantiene los datos en la hoja que está utilizando cada usuario.</p>
+      </div>
+      <div class="cards three">
+        <article class="card">
+          <div class="icon" aria-hidden="true">01</div>
+          <h3>APP FCBQ</h3>
+          <p class="card-kicker">Biblioteca central de Apps Script</p>
+          <p>Contiene la lógica real: validaciones, cálculos, búsquedas, importación, estadísticas, diálogos HTML e integración con Calendar.</p>
+          <ul>
+            <li>Una única fuente de verdad</li>
+            <li>Versiones publicadas y controladas</li>
+            <li>Actualizaciones sin copiar archivos</li>
+          </ul>
+        </article>
+        <article class="card featured">
+          <div class="icon" aria-hidden="true">02</div>
+          <h3>Template APP</h3>
+          <p class="card-kicker">Puente ligero hacia la biblioteca</p>
+          <p>Conserva solo las funciones públicas que Google Sheets necesita encontrar. Cada función llama a su equivalente en APP FCBQ.</p>
+          <pre aria-label="Ejemplo de función puente"><code>function onOpen() {
+  return APPFCBQ.onOpen();
+}</code></pre>
+          <p class="note">No contiene reglas de negocio ni copias de los HTML.</p>
+        </article>
+        <article class="card">
+          <div class="icon" aria-hidden="true">03</div>
+          <h3>Google Sheets</h3>
+          <p class="card-kicker">Interfaz y datos del usuario</p>
+          <p>La hoja activa aporta pestañas, registros y configuración. La biblioteca trabaja sobre la hoja que ha invocado la función.</p>
+          <ul>
+            <li>Menú y botones propios</li>
+            <li>Configuración por usuario</li>
+            <li>Historial y estadísticas</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section flow-section" id="flujo">
+      <div class="section-heading light">
+        <p class="eyebrow">Flujo de uso</p>
+        <h2>De la designación al registro</h2>
+        <p>El usuario trabaja siempre desde Google Sheets. El Template recibe la acción y la biblioteca ejecuta el proceso.</p>
+      </div>
+      <ol class="timeline">
+        <li>
+          <span class="step">1</span>
+          <div><h3>Abrir la hoja</h3><p>El wrapper <code>onOpen</code> pide a la biblioteca que construya el menú FCBQ.</p></div>
+        </li>
+        <li>
+          <span class="step">2</span>
+          <div><h3>Configurar el acceso</h3><p>El usuario define temporada, retención, Calendar y los datos necesarios para su flujo.</p></div>
+        </li>
+        <li>
+          <span class="step">3</span>
+          <div><h3>Comprobar partidos</h3><p>CHECK consulta y valida la información antes de guardar. También se pueden añadir partidos manuales.</p></div>
+        </li>
+        <li>
+          <span class="step">4</span>
+          <div><h3>Guardar y sincronizar</h3><p>Los registros se escriben en la hoja y, si está configurado, se crean los eventos correspondientes en Google Calendar.</p></div>
+        </li>
+        <li>
+          <span class="step">5</span>
+          <div><h3>Buscar y analizar</h3><p>Las herramientas de búsqueda, importación y estadísticas operan sobre los registros de esa hoja.</p></div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="section" id="mantenimiento">
+      <div class="section-heading">
+        <p class="eyebrow">Mantenimiento</p>
+        <h2>Actualizar sin romper las copias</h2>
+      </div>
+      <div class="maintenance-grid">
+        <div class="maintenance-copy">
+          <p class="big-copy">Los cambios se hacen una vez en APP FCBQ y se publican como una nueva versión de la biblioteca.</p>
+          <p>Después, el Template puede apuntar a esa versión. Las hojas que ya usan el Template conservan su estructura y sus datos: solo cambia la versión de la lógica que ejecutan.</p>
+        </div>
+        <div class="checklist" role="list" aria-label="Proceso de actualización">
+          <div role="listitem"><span>✓</span><p><strong>1. Modificar</strong><br>Trabajar en el proyecto central.</p></div>
+          <div role="listitem"><span>✓</span><p><strong>2. Probar</strong><br>Validar los flujos en un Template de prueba.</p></div>
+          <div role="listitem"><span>✓</span><p><strong>3. Versionar</strong><br>Publicar una versión fija de la biblioteca.</p></div>
+          <div role="listitem"><span>✓</span><p><strong>4. Actualizar</strong><br>Cambiar la dependencia y verificar el menú.</p></div>
+        </div>
+      </div>
+      <aside class="callout">
+        <strong>Por qué existen los wrappers</strong>
+        <p>Los disparadores simples como <code>onOpen</code> y las funciones asignadas a botones deben estar presentes en el proyecto vinculado a la hoja. Por eso el Template conserva puentes públicos, aunque la lógica viva en la biblioteca.</p>
+      </aside>
+    </section>
+
+    <section class="section capabilities" aria-labelledby="capacidades-title">
+      <div class="section-heading">
+        <p class="eyebrow">Funciones</p>
+        <h2 id="capacidades-title">Qué cubre el proyecto</h2>
+      </div>
+      <div class="tag-grid">
+        <span>Consulta de partidos</span><span>Guardado manual</span><span>Registros económicos</span><span>Retención</span><span>Dietas y transporte</span><span>Asignación de camiseta</span><span>Google Calendar</span><span>Búsqueda</span><span>Importación</span><span>Exportación</span><span>Eliminación controlada</span><span>Estadísticas</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>APP FCBQ</strong> · Documentación de arquitectura</p>
+    <p>Biblioteca central, Template ligero y Google Sheets.</p>
+  </footer>
+</body>
+</html>
