@@ -10,3 +10,4 @@
 .tip .calendar-id-shot{display:block;width:100%;height:auto;margin-top:.9rem;border-radius:10px;border:1px solid #b6c6df}
 
 .calendar-guide-block{padding-top:1.2rem}.calendar-guide-block+ .calendar-guide-block{margin-top:.2rem;border-top:1px solid var(--line)}.calendar-guide-block>strong{display:block;color:var(--ink);font-size:1rem}.calendar-guide-block>p{margin:.35rem 0 0;color:var(--muted);font-size:.92rem}.calendar-guide-block ul{margin-bottom:0}
+.create-calendar-shot{display:block;width:100%;height:auto;max-height:420px;object-fit:contain;object-position:left center;margin-top:.8rem;border-radius:12px;background:#f7f9fc;box-shadow:inset 0 0 0 1px var(--line)}
