@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Cómo funciona APP FCBQ: una biblioteca central de Apps Script, un Template ligero y un flujo de trabajo desde Google Sheets.">
+  <meta name="description" content="Guía de uso de App Arbitres FCBQ: crea tu copia, configura el acceso y sincroniza tus partidos con Google Calendar.">
   <meta name="theme-color" content="#0d6b5f">
-  <meta property="og:title" content="APP FCBQ · Arquitectura y funcionamiento">
-  <meta property="og:description" content="Biblioteca central, Template sin código duplicado y flujo de trabajo en Google Sheets.">
+  <meta property="og:title" content="App Arbitres FCBQ · Guía de uso">
+  <meta property="og:description" content="Empieza en tres pasos: crea tu Template, configura el acceso y usa CHECK con Google Calendar.">
   <meta property="og:type" content="website">
-  <title>APP FCBQ · Arquitectura y funcionamiento</title>
+  <title>App Arbitres FCBQ · Guía de uso</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -19,153 +19,147 @@
       <span>App Arbitres FCBQ</span>
     </a>
     <nav aria-label="Navegación principal">
-      <a href="#arquitectura">Arquitectura</a>
-      <a href="#flujo">Flujo</a>
-      <a href="#mantenimiento">Mantenimiento</a>
+      <a href="#preguntas">Preguntas</a>
+      <a href="#crear">Crear Template</a>
+      <a href="#configurar">Configurar</a>
+      <a href="#check">CHECK</a>
     </nav>
   </header>
 
   <main id="contenido">
     <section class="hero" id="inicio">
       <div class="hero-copy">
-        <p class="eyebrow">Google Sheets + Apps Script</p>
-        <h1>Una sola lógica.<br><span>Muchas hojas.</span></h1>
-        <p class="lead">APP FCBQ concentra el funcionamiento en una biblioteca central. Cada copia del Template mantiene su propia hoja y delega las acciones sin copiar el código.</p>
+        <p class="eyebrow">Guía de uso</p>
+        <h1>Tus partidos,<br><span>en orden.</span></h1>
+        <p class="lead">Crea tu copia de App Arbitres FCBQ, conecta tu acceso y mantén tus designaciones sincronizadas con Google Calendar.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#arquitectura">Ver la arquitectura</a>
-          <a class="button secondary" href="#flujo">Cómo se usa</a>
+          <a class="button primary" href="https://docs.google.com/spreadsheets/d/1Ps2bw4J5jRtbD7Zsv2n4DCbb6CW53_wW56JigzTve00/copy" target="_blank" rel="noopener">Crear mi copia</a>
+          <a class="button secondary" href="#crear">Ver el paso a paso</a>
         </div>
+        <p class="privacy-note"><span aria-hidden="true">✓</span> La app consulta ZonaFCBQ, pero no escribe ni modifica datos allí.</p>
       </div>
-      <div class="architecture-mini" aria-label="Resumen de arquitectura">
-        <div class="mini-card central">
-          <span>Biblioteca</span>
-          <strong>APP FCBQ</strong>
-          <small>Lógica central</small>
-        </div>
-        <div class="connector" aria-hidden="true"><span></span></div>
-        <div class="mini-card template">
-          <span>Interfaz</span>
-          <strong>Template APP</strong>
-          <small>Wrappers mínimos</small>
-        </div>
-        <div class="connector" aria-hidden="true"><span></span></div>
-        <div class="mini-card sheet">
-          <span>Uso diario</span>
-          <strong>Google Sheets</strong>
-          <small>Datos de cada usuario</small>
-        </div>
+      <div class="app-preview" aria-label="Resumen del proceso">
+        <div class="preview-top"><span>App Arbitres FCBQ</span><span class="status-dot">Lista</span></div>
+        <div class="preview-card accent"><small>01</small><strong>Crea tu Template</strong><span>Una copia privada en tu Google Drive</span></div>
+        <div class="preview-card"><small>02</small><strong>Configura el acceso</strong><span>Credenciales, camisetas y calendario</span></div>
+        <div class="preview-card"><small>03</small><strong>Pulsa CHECK</strong><span>Revisa y sincroniza tus partidos</span></div>
       </div>
     </section>
 
-    <section class="section" id="arquitectura">
+    <section class="section faq-section" id="preguntas">
       <div class="section-heading">
-        <p class="eyebrow">Arquitectura</p>
-        <h2>Tres capas con responsabilidades claras</h2>
-        <p>La separación evita duplicados, simplifica las actualizaciones y mantiene los datos en la hoja que está utilizando cada usuario.</p>
+        <p class="eyebrow">Antes de empezar</p>
+        <h2>Preguntas frecuentes</h2>
+        <p>Lo más importante sobre el uso de la app.</p>
       </div>
-      <div class="cards three">
-        <article class="card">
-          <div class="icon" aria-hidden="true">01</div>
-          <h3>APP FCBQ</h3>
-          <p class="card-kicker">Biblioteca central de Apps Script</p>
-          <p>Contiene la lógica real: validaciones, cálculos, búsquedas, importación, estadísticas, diálogos HTML e integración con Calendar.</p>
-          <ul>
-            <li>Una única fuente de verdad</li>
-            <li>Versiones publicadas y controladas</li>
-            <li>Actualizaciones sin copiar archivos</li>
-          </ul>
-        </article>
-        <article class="card featured">
-          <div class="icon" aria-hidden="true">02</div>
-          <h3>Template APP</h3>
-          <p class="card-kicker">Puente ligero hacia la biblioteca</p>
-          <p>Conserva solo las funciones públicas que Google Sheets necesita encontrar. Cada función llama a su equivalente en APP FCBQ.</p>
-          <pre aria-label="Ejemplo de función puente"><code>function onOpen() {
-  return APPFCBQ.onOpen();
-}</code></pre>
-          <p class="note">No contiene reglas de negocio ni copias de los HTML.</p>
-        </article>
-        <article class="card">
-          <div class="icon" aria-hidden="true">03</div>
-          <h3>Google Sheets</h3>
-          <p class="card-kicker">Interfaz y datos del usuario</p>
-          <p>La hoja activa aporta pestañas, registros y configuración. La biblioteca trabaja sobre la hoja que ha invocado la función.</p>
-          <ul>
-            <li>Menú y botones propios</li>
-            <li>Configuración por usuario</li>
-            <li>Historial y estadísticas</li>
-          </ul>
-        </article>
+      <div class="faq-grid">
+        <details open><summary>¿La app cambia algo en ZonaFCBQ?</summary><p>No. Solo consulta la información necesaria. No escribe, modifica ni borra datos en ZonaFCBQ.</p></details>
+        <details><summary>¿Sirve si soy auxiliar de mesa?</summary><p>Sí. Puedes utilizarla para tus designaciones como auxiliar de mesa.</p></details>
+        <details><summary>¿Y si soy árbitro y auxiliar de mesa?</summary><p>También. La app distingue ambas funciones para que cada partido quede registrado correctamente.</p></details>
+        <details><summary>¿Puedo usar otro calendario?</summary><p>La sincronización automática funciona únicamente con Google Calendar.</p></details>
+        <details><summary>¿Tengo que instalar las mejoras?</summary><p>No. El funcionamiento se mantiene y se actualiza automáticamente. Tu hoja conserva sus datos mientras recibe las mejoras de la app.</p></details>
       </div>
     </section>
 
-    <section class="section flow-section" id="flujo">
+    <section class="section step-section" id="crear">
+      <div class="section-heading">
+        <p class="eyebrow">Paso 1</p>
+        <h2>Crea tu Template</h2>
+        <p>El enlace abre directamente la pantalla de copia de Google Sheets. No necesitas editar la plantilla original.</p>
+      </div>
+      <div class="instruction-grid">
+        <ol class="numbered-steps">
+          <li><span>1</span><div><h3>Abre el Template</h3><p>Pulsa el botón para ir a la pantalla segura de copia de Google Sheets.</p></div></li>
+          <li><span>2</span><div><h3>Confirma “Hacer una copia”</h3><p>Google guardará una copia propia en tu Drive. Puedes cambiarle el nombre antes de crearla.</p></div></li>
+          <li><span>3</span><div><h3>Abre tu copia</h3><p>Trabaja siempre desde esa hoja. Tus registros y tu configuración quedan en tu copia.</p></div></li>
+        </ol>
+        <aside class="action-card">
+          <span class="action-label">Template oficial</span>
+          <h3>Empieza con una copia limpia</h3>
+          <p>El botón usa el enlace <code>/copy</code>, preparado para que nunca edites el original por error.</p>
+          <a class="button primary wide" href="https://docs.google.com/spreadsheets/d/1Ps2bw4J5jRtbD7Zsv2n4DCbb6CW53_wW56JigzTve00/copy" target="_blank" rel="noopener">Crear mi copia del Template</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section dark-section" id="configurar">
       <div class="section-heading light">
-        <p class="eyebrow">Flujo de uso</p>
-        <h2>De la designación al registro</h2>
-        <p>El usuario trabaja siempre desde Google Sheets. El Template recibe la acción y la biblioteca ejecuta el proceso.</p>
+        <p class="eyebrow">Paso 2</p>
+        <h2>Configura el acceso</h2>
+        <p>Haz esta configuración una vez en tu copia. Los datos de acceso se guardan de forma privada para tu usuario.</p>
       </div>
-      <ol class="timeline">
-        <li>
-          <span class="step">1</span>
-          <div><h3>Abrir la hoja</h3><p>El wrapper <code>onOpen</code> pide a la biblioteca que construya el menú FCBQ.</p></div>
-        </li>
-        <li>
-          <span class="step">2</span>
-          <div><h3>Configurar el acceso</h3><p>El usuario define temporada, retención, Calendar y los datos necesarios para su flujo.</p></div>
-        </li>
-        <li>
-          <span class="step">3</span>
-          <div><h3>Comprobar partidos</h3><p>CHECK consulta y valida la información antes de guardar. También se pueden añadir partidos manuales.</p></div>
-        </li>
-        <li>
-          <span class="step">4</span>
-          <div><h3>Guardar y sincronizar</h3><p>Los registros se escriben en la hoja y, si está configurado, se crean los eventos correspondientes en Google Calendar.</p></div>
-        </li>
-        <li>
-          <span class="step">5</span>
-          <div><h3>Buscar y analizar</h3><p>Las herramientas de búsqueda, importación y estadísticas operan sobre los registros de esa hoja.</p></div>
-        </li>
-      </ol>
+      <div class="walkthrough">
+        <article class="walk-card">
+          <div class="ui-shot" aria-label="Representación de la pantalla Inicio">
+            <div class="ui-bar"><span></span><span></span><span></span></div>
+            <div class="ui-title">CONFIGURACIÓN</div>
+            <div class="ui-grid"><b>ACCESO FCBQ</b><span>CAMISETAS</span><span>TEMPORADA</span><span>RETENCIÓN</span></div>
+          </div>
+          <span class="walk-number">01</span>
+          <h3>Abre ACCESO FCBQ</h3>
+          <p>En la pestaña <strong>Inicio</strong>, ve a CONFIGURACIÓN y pulsa el botón de acceso.</p>
+        </article>
+        <article class="walk-card">
+          <div class="ui-shot dialog-shot" aria-label="Representación del diálogo de credenciales">
+            <div class="dialog-title">Configurar Zona FCBQ</div>
+            <label>Usuario</label><div class="fake-field">tu correo</div>
+            <label>Contraseña</label><div class="fake-field">••••••••••</div>
+            <div class="fake-check">✓ Crear eventos en Google Calendar</div>
+          </div>
+          <span class="walk-number">02</span>
+          <h3>Introduce tus credenciales</h3>
+          <p>Usa el mismo correo y contraseña con los que accedes a ZonaFCBQ. No los escribas en celdas de la hoja.</p>
+        </article>
+        <article class="walk-card">
+          <div class="ui-shot success-shot" aria-label="Representación de configuración guardada">
+            <div class="success-icon">✓</div>
+            <strong>Acceso configurado</strong>
+            <span>La app ya puede comprobar tus designaciones.</span>
+          </div>
+          <span class="walk-number">03</span>
+          <h3>Guarda y comprueba el estado</h3>
+          <p>Guarda la configuración. En Inicio verás el estado de conexión para saber si está lista.</p>
+        </article>
+      </div>
+      <aside class="notice"><strong>Importante</strong><p>La app usa el acceso para consultar tus designaciones. Nunca publica ni cambia información en ZonaFCBQ.</p></aside>
     </section>
 
-    <section class="section" id="mantenimiento">
+    <section class="section" id="check">
       <div class="section-heading">
-        <p class="eyebrow">Mantenimiento</p>
-        <h2>Actualizar sin romper las copias</h2>
+        <p class="eyebrow">Paso 3</p>
+        <h2>CHECK y Google Calendar</h2>
+        <p>CHECK busca cambios, prepara los partidos y mantiene el calendario al día.</p>
       </div>
-      <div class="maintenance-grid">
-        <div class="maintenance-copy">
-          <p class="big-copy">Los cambios se hacen una vez en APP FCBQ y se publican como una nueva versión de la biblioteca.</p>
-          <p>Después, el Template puede apuntar a esa versión. Las hojas que ya usan el Template conservan su estructura y sus datos: solo cambia la versión de la lógica que ejecutan.</p>
+      <div class="check-layout">
+        <div class="check-flow">
+          <article><span>1</span><div><h3>Configura tus camisetas</h3><p>Indica los colores y cantidades disponibles. Si pulsas CHECK sin camisetas, la app abrirá esa configuración para que puedas completarla.</p></div></article>
+          <article><span>2</span><div><h3>Indica el ID del calendario</h3><p>En <strong>Google Calendar → Configuración e integración → Integrar calendario</strong>, copia el campo <strong>ID del calendario</strong> y pégalo en la configuración de la app.</p></div></article>
+          <article><span>3</span><div><h3>Pulsa CHECK</h3><p>La app consulta tus designaciones, detecta novedades y prepara los partidos encontrados para que puedas revisarlos.</p></div></article>
+          <article><span>4</span><div><h3>Guarda y sincroniza</h3><p>Al guardar, los registros se añaden a tu hoja y los eventos se crean o actualizan en Google Calendar cuando esa opción está activada.</p></div></article>
         </div>
-        <div class="checklist" role="list" aria-label="Proceso de actualización">
-          <div role="listitem"><span>✓</span><p><strong>1. Modificar</strong><br>Trabajar en el proyecto central.</p></div>
-          <div role="listitem"><span>✓</span><p><strong>2. Probar</strong><br>Validar los flujos en un Template de prueba.</p></div>
-          <div role="listitem"><span>✓</span><p><strong>3. Versionar</strong><br>Publicar una versión fija de la biblioteca.</p></div>
-          <div role="listitem"><span>✓</span><p><strong>4. Actualizar</strong><br>Cambiar la dependencia y verificar el menú.</p></div>
-        </div>
+        <aside class="calendar-card">
+          <div class="calendar-head"><div class="calendar-icon">31</div><div><span>Google Calendar</span><strong>Actualización automática</strong></div></div>
+          <ul>
+            <li>Fecha y hora del partido</li>
+            <li>Equipos, categoría y pabellón</li>
+            <li>Función: árbitro o auxiliar de mesa</li>
+            <li>Enlace del partido cuando está disponible</li>
+          </ul>
+          <div class="tip"><strong>¿Dónde encuentro el ID?</strong><p>Abre Google Calendar en el navegador, pasa el cursor por el calendario, pulsa ⋮, entra en “Configuración e integración” y copia “ID del calendario”.</p></div>
+        </aside>
       </div>
-      <aside class="callout">
-        <strong>Por qué existen los wrappers</strong>
-        <p>Los disparadores simples como <code>onOpen</code> y las funciones asignadas a botones deben estar presentes en el proyecto vinculado a la hoja. Por eso el Template conserva puentes públicos, aunque la lógica viva en la biblioteca.</p>
-      </aside>
     </section>
 
-    <section class="section capabilities" aria-labelledby="capacidades-title">
-      <div class="section-heading">
-        <p class="eyebrow">Funciones</p>
-        <h2 id="capacidades-title">Qué cubre el proyecto</h2>
-      </div>
-      <div class="tag-grid">
-        <span>Consulta de partidos</span><span>Guardado manual</span><span>Registros económicos</span><span>Retención</span><span>Dietas y transporte</span><span>Asignación de camiseta</span><span>Google Calendar</span><span>Búsqueda</span><span>Importación</span><span>Exportación</span><span>Eliminación controlada</span><span>Estadísticas</span>
-      </div>
+    <section class="section final-cta">
+      <p class="eyebrow">Listo para empezar</p>
+      <h2>Crea tu copia y configura la app en unos minutos.</h2>
+      <a class="button primary" href="https://docs.google.com/spreadsheets/d/1Ps2bw4J5jRtbD7Zsv2n4DCbb6CW53_wW56JigzTve00/copy" target="_blank" rel="noopener">Crear mi Template</a>
     </section>
   </main>
 
   <footer>
-    <p><strong>APP FCBQ</strong> · Documentación de arquitectura</p>
-    <p>Biblioteca central, Template ligero y Google Sheets.</p>
+    <p><strong>App Arbitres FCBQ</strong> · Guía de uso</p>
+    <p>Google Sheets + Google Calendar</p>
   </footer>
 </body>
 </html>
