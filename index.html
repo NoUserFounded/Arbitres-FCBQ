@@ -27,6 +27,28 @@
 
 <a href="#crear">Crear Template</a><a href="#configurar">Configurar</a><a href="#preguntas">FQS</a><span aria-hidden="true" class="menu-separator"></span><a href="mailto:ericsancli@gmail.com">Reportar Bug</a></nav>
 </header>
+<div class="update-notice" id="update-notice" role="status">
+<div class="update-notice-inner">
+<span class="update-notice-tag">Updates</span>
+<p>Hay una nueva versión de la app. <a href="/updates">Mira cómo actualizar tu copia</a>.</p>
+<button aria-label="Cerrar aviso" class="update-notice-close" type="button">&times;</button>
+</div>
+</div>
+<style>
+.update-notice{padding:.9rem clamp(1.2rem,4vw,4rem);background:var(--mint);border-bottom:1px solid var(--line)}
+.update-notice[hidden]{display:none}
+.update-notice-inner{display:flex;align-items:center;gap:.9rem;max-width:1200px;margin:0 auto}
+.update-notice-tag{flex:none;padding:.2rem .6rem;border-radius:999px;background:var(--teal);color:#fff;font-size:.75rem;font-weight:850;letter-spacing:.08em;text-transform:uppercase}
+.update-notice p{margin:0;flex:1;font-size:.95rem;color:var(--ink)}
+.update-notice a{color:var(--teal);font-weight:800}
+.update-notice-close{flex:none;width:34px;height:34px;border:0;border-radius:10px;background:transparent;color:var(--muted);font-size:1.5rem;line-height:1;cursor:pointer}
+.update-notice-close:hover{background:rgba(0,37,107,.08);color:var(--teal)}
+@media(max-width:560px){.update-notice-inner{align-items:flex-start}.update-notice-tag{margin-top:.1rem}}
+</style>
+<script>
+(function(){var n=document.getElementById("update-notice"),k="fcbq-update-notice-closed";try{if(localStorage.getItem(k)==="1"){n.hidden=true;}}catch(e){}
+n.querySelector(".update-notice-close").addEventListener("click",function(){n.hidden=true;try{localStorage.setItem(k,"1");}catch(e){}});})();
+</script>
 <main id="contenido">
 <section class="hero" id="inicio">
 <div class="hero-copy">
