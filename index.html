@@ -29,13 +29,11 @@
 </header>
 <div class="update-notice" id="update-notice" role="status">
 <div class="update-notice-inner">
-<span aria-hidden="true" class="update-notice-icon"><svg fill="none" height="22" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="22"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><polyline points="21 3 21 9 15 9"/></svg></span>
+<button aria-label="Cerrar aviso" class="update-notice-close" type="button">&times;</button>
 <div class="update-notice-text">
-<span class="update-notice-tag">Updates</span>
 <p><strong>Nueva versión disponible.</strong> Actualiza tu copia en menos de un minuto.</p>
 </div>
 <a class="update-notice-cta" href="/updates">Cómo actualizar <span aria-hidden="true">&rarr;</span></a>
-<button aria-label="Cerrar aviso" class="update-notice-close" type="button">&times;</button>
 </div>
 </div>
 <style>
@@ -43,18 +41,14 @@
 .update-notice::after{content:"";position:absolute;right:-60px;top:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(143,183,255,.35),transparent 70%);pointer-events:none}
 .update-notice[hidden]{display:none}
 .update-notice-inner{position:relative;z-index:1;display:flex;align-items:center;gap:1rem;max-width:1200px;margin:0 auto}
-.update-notice-icon{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);animation:fcbqSpin 3.5s ease-in-out infinite}
 .update-notice-text{flex:1;display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
-.update-notice-tag{flex:none;padding:.22rem .65rem;border-radius:999px;background:var(--orange);color:#fff;font-size:.72rem;font-weight:850;letter-spacing:.1em;text-transform:uppercase}
 .update-notice p{margin:0;font-size:1rem;color:#dce8ff}
 .update-notice p strong{color:#fff}
 .update-notice-cta{flex:none;padding:.6rem 1rem;border-radius:10px;background:#fff;color:var(--teal);font-weight:850;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.18);transition:transform .18s ease}
 .update-notice-cta:hover{transform:translateY(-2px)}
 .update-notice-close{flex:none;width:36px;height:36px;border:0;border-radius:10px;background:rgba(255,255,255,.1);color:#fff;font-size:1.5rem;line-height:1;cursor:pointer}
 .update-notice-close:hover{background:rgba(255,255,255,.22)}
-@keyframes fcbqSpin{0%,70%{transform:rotate(0)}100%{transform:rotate(360deg)}}
-@media(prefers-reduced-motion:reduce){.update-notice-icon{animation:none}}
-@media(max-width:700px){.update-notice-inner{flex-wrap:wrap;gap:.8rem}.update-notice-text{flex:1 1 calc(100% - 110px)}.update-notice-cta{order:4;flex:1 1 100%;text-align:center}.update-notice-close{position:absolute;top:0;right:0}.update-notice-text{padding-right:2.6rem}}
+@media(max-width:700px){.update-notice-inner{flex-wrap:wrap;gap:.8rem}.update-notice-text{flex:1 1 calc(100% - 52px)}.update-notice-cta{order:4;flex:1 1 100%;text-align:center}}
 </style>
 <script>
 (function(){var n=document.getElementById("update-notice"),k="fcbq-update-notice-closed-v2";try{if(localStorage.getItem(k)==="1"){n.hidden=true;}}catch(e){}
